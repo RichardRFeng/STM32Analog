@@ -87,6 +87,8 @@ int main(void)
   uint32_t raw2;
   uint32_t raw3;
 
+  uint8_t MSG[100] = {'\0'};
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -141,6 +143,9 @@ int main(void)
 	TIM11->CCR1 = raw1 << 4;
 	TIM13->CCR1 = raw2 << 4;
 	TIM14->CCR1 = raw3 << 4;
+
+	sprintf(MSG, "Raw 1: %d\r\n", raw1);
+	HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
 
     /* USER CODE END WHILE */
 
